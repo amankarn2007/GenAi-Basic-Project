@@ -125,23 +125,9 @@ export const getMe = async (req: Request, res: Response) => {
     }
 
     try {
-        const decodeAccessToken = jwt.verify(accessToken, process.env.JWT_SECRET!) as {jti: string, id: string};
-
-        const isBlacklisted = await prismaClient.blacklist.findUnique({
-            where: {
-                jti: decodeAccessToken.jti
-            }
-        })
-
-        if(isBlacklisted) {
-            return res.status(401).json({
-                message: "Token is balcklisted"
-            })
-        }
-
         const user = await prismaClient.user.findFirst({
             where: {
-                id: decodeAccessToken.id
+                id: (req as any).user.id, //through auth midd
             }
         })
 
