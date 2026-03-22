@@ -1,4 +1,5 @@
 import axios from "axios";
+//auth api is purly based on backend communication, send backend api reqs
 
 interface Register {
     username: string,

@@ -1,0 +1,28 @@
+import { Navigate } from "react-router";
+import { useAuth } from "../hooks/useAuth"
+
+
+const Protected = ({children}: {children: React.ReactNode}) => { //chek user loged in or not
+    const { loading, user } = useAuth();
+
+    if(loading) {
+        return (
+            <div className="w-full h-screen bg-gray-950 flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 border-10 border-t-10 border-t-red-500 rounded-full animate-spin"></div>
+                    <h3 className="text-3xl text-white">Loading...</h3>
+                </div>
+            </div>
+        )
+    }
+
+    // on every refresh, user state will be cleared, that's why we'll use useEffeft and fetch user on every refresh  
+
+    if(!user) {
+        return <Navigate to={"/login"} />
+    }
+
+    return children;
+}
+
+export default Protected;

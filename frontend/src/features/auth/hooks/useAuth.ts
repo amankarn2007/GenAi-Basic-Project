@@ -14,6 +14,7 @@ interface LoginType {
     password: string
 }
 
+// useAuth will handle state and auth api logics
 export function useAuth() {
     const context = useContext(AuthContext);
     if(!context) throw new Error("useAuth must be used within an AuthProvider");
