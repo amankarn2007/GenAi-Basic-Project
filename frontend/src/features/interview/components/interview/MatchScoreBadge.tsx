@@ -1,23 +1,46 @@
 
 
 export const MatchScoreBadge = ({ score }: { score: number }) => {
-  const config = {
-    High:   { color: "text-emerald-400", bg: "bg-emerald-950", border: "border-emerald-900", bar: "bg-emerald-500", width: "w-4/5" },
-    Medium: { color: "text-amber-400",   bg: "bg-amber-950",   border: "border-amber-900",   bar: "bg-amber-500",   width: "w-2/4" },
-    Low:    { color: "text-red-400",     bg: "bg-red-950",     border: "border-red-900",      bar: "bg-red-500",     width: "w-1/5" },
-  }[score] ?? {
-    color: "text-zinc-400", bg: "bg-zinc-800", border: "border-zinc-700", bar: "bg-zinc-500", width: "w-1/2",
-  };
+  // Level based on numerical thresholds
+  const isHigh = score >= 80;
+  const isMedium = score >= 40 && score < 80;
+  const isLow = score < 40;
+
+  // Select Colors based on level
+  const colors = isHigh 
+    ? { text: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", bar: "bg-emerald-500" }
+    : isMedium
+    ? { text: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", bar: "bg-amber-500" }
+    : { text: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", bar: "bg-red-500" };
+
+  const label = isHigh ? "High Match" : isMedium ? "Average Match" : "Low Match";
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <p className="text-[12px] uppercase tracking-widest text-zinc-400">Match score</p>
-      <div className={`px-4 py-1.5 rounded-full text-sm font-semibold border ${config.bg} ${config.color} ${config.border}`}>
-        {score}
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between items-end">
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-1">
+            Overall Match
+          </p>
+          <span className={`text-xs font-medium px-2 py-0.5 rounded border ${colors.bg} ${colors.text} ${colors.border}`}>
+            {label}
+          </span>
+        </div>
+        <div className={`text-2xl font-bold mr-3 tracking-tighter ${colors.text}`}>
+          {score}<span className="text-lg opacity-60">%</span>
+        </div>
       </div>
-      <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
-        <div className={`h-full rounded-full ${config.bar} ${config.width} transition-all duration-700`} />
+
+      <div className="w-full bg-zinc-800/50 rounded-full h-2 overflow-hidden border border-zinc-800">
+        <div 
+          className={`h-full rounded-full ${colors.bar} transition-all duration-1000 ease-out`} 
+          style={{ width: `${score}%` }} // Inline style for precise width
+        />
       </div>
+      
+      <p className="text-[12px] text-zinc-400 leading-relaxed">
+        Based on your technical skills and project experience relative to the JD.
+      </p>
     </div>
   );
 };

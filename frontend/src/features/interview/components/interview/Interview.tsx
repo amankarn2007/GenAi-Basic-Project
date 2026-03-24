@@ -5,6 +5,7 @@ import { QuestionCard } from "./QuestionCard";
 import { RoadMapDay } from "./RoadmapDay";
 import { MatchScoreBadge } from "./MatchScoreBadge";
 import { SkillGapsList } from "./SkillGapList";
+import { useNavigate } from "react-router";
 
 
 type NavId = "technical" | "behavioral" | "roadmap";
@@ -46,6 +47,7 @@ interface InterviewProps {
 }
 
 export const Interview = ({ report }: InterviewProps) => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState<NavId>("technical");
 
   const displayName = report.title?.split(":")[1]?.trim() || "Candidate";
@@ -56,7 +58,7 @@ export const Interview = ({ report }: InterviewProps) => {
       <div className="max-w-7xl mx-auto border border-zinc-800 rounded-2xl overflow-hidden flex flex-col">
 
         {/* ── Title bar ── */}
-        <div className="flex items-center justify-between gap-4 px-6 py-4 bg-zinc-900 border-b border-zinc-800">
+        <div className="flex items-center justify-between gap-4 px-6 py-4 bg-gray-900 border-b border-zinc-800">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">
               <span className="text-sm font-semibold text-zinc-300">{initials}</span>
@@ -160,6 +162,11 @@ export const Interview = ({ report }: InterviewProps) => {
           </aside>
 
         </div>
+      </div>
+
+      <div className="fixed top-7 left-5 flex items-center gap-2 rounded-2xl pr-4 pl-2 py-1.5 text-white bg-green-500 hover:bg-green-400 cursor-pointer" onClick={() => navigate("/")}>
+        <i className="fa-solid fa-angle-left"></i>
+        Back
       </div>
     </div>
   );

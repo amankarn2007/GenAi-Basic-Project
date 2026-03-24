@@ -21,11 +21,11 @@ export const QuestionCard = ({item, index}: QuestionProps) => {
   return (
     <button
       onClick={() => setOpen(!open)}
-      className="w-full text-left border border-zinc-800 rounded-xl overflow-hidden transition-all duration-200 focus:outline-none cursor-pointer"
+      className="w-full text-left border border-zinc-800 rounded-xl overflow-hidden transition-all duration-200 focus:outline-none cursor-pointer group"
     >
       <div className="flex items-start gap-3 px-5 py-4 bg-zinc-900 hover:bg-zinc-800/70 transition-colors">
-        <span className="text-[11px] font-mono text-zinc-600 mt-0.5 shrink-0 w-5">
-          {String(index + 1).padStart(2, "0")}
+        <span className="text-[11px] font-mono text-zinc-600 mt-0.5 shrink-0 w-5 group-hover:bg-pink-600 group-hover:text-white rounded-full px-4 py-2">
+          <p className="place-self-center"> {String(index + 1).padStart(2, "0")} </p>
         </span>
         <p className="text-sm text-zinc-300 leading-relaxed flex-1">{cleanText(questionText)}</p>
         <span

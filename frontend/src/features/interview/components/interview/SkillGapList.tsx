@@ -60,11 +60,11 @@ export const SkillGapsList = ({ skillGaps }: SkillGapsListProps) => {
                 }`} />
                 
                 <div className="flex-1">
-                  <p className="text-sm text-zinc-200 font-medium leading-tight group-hover:text-zinc-100 transition-colors">
+                  <p className="text-sm text-zinc-300 font-medium leading-tight group-hover:text-zinc-100 transition-colors">
                     {label}
                   </p>
                   {detail && (
-                    <p className="text-[12px] text-zinc-500 leading-relaxed mt-1">
+                    <p className="text-[13px] text-zinc-400 leading-relaxed mt-1">
                       {detail}
                     </p>
                   )}
