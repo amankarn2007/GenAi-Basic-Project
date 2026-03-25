@@ -15,7 +15,7 @@ export default function Register() {
         e.preventDefault();
         const success = await handleRegister({username, email, password});
         if(success) {
-            navigate("/")
+            navigate("/dashboard")
         }
     }
 
@@ -32,7 +32,7 @@ export default function Register() {
 
     return (
         <div className="w-full h-screen bg-gray-950 flex items-center justify-center">
-            <div className="flex flex-col px-5 py-2 gap-5">
+            <div className="flex flex-col px-5 py-2 gap-5 text-black">
                 <h2 className="text-white text-5xl py-5">Register</h2>
 
                 <div className="flex flex-col gap-2">

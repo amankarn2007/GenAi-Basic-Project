@@ -164,7 +164,7 @@ export const Interview = ({ report }: InterviewProps) => {
         </div>
       </div>
 
-      <div className="fixed top-7 left-5 flex items-center gap-2 rounded-2xl pr-4 pl-2 py-1.5 text-white bg-green-500 hover:bg-green-400 cursor-pointer" onClick={() => navigate("/")}>
+      <div className="fixed top-7 left-5 flex items-center gap-2 rounded-2xl pr-4 pl-2 py-1.5 text-white bg-green-500 hover:bg-green-400 cursor-pointer" onClick={() => navigate("/dashboard")}>
         <i className="fa-solid fa-angle-left"></i>
         Back
       </div>
