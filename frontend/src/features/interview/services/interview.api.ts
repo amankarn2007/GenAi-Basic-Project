@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000";
+//const baseUrl = "http://localhost:3000";
+const baseUrl = "https://genai-prepai-backend.onrender.com";
 
 export async function logoutApi() {
     const response = await axios.get(`${baseUrl}/api/auth/logout`, {

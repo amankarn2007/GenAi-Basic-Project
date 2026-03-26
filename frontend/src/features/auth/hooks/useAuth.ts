@@ -57,7 +57,7 @@ export function useAuth() {
         setLoading(true);
 
         try {
-            const data = await logout();
+            await logout();
             setUser(null);
 
         } catch(err) {

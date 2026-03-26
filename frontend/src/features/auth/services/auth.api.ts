@@ -7,7 +7,8 @@ interface Register {
     password: string
 }
 
-const baseUrl = "http://localhost:3000"
+//const baseUrl = "http://localhost:3000";
+const baseUrl = "https://genai-prepai-backend.onrender.com"; // deployed backend
 
 export async function register({username, email, password}: Register) {
     try {
