@@ -9,9 +9,15 @@ import interviewRouter from "./routes/interview.route.js";
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
+
+const allowedOrigin = [
+    "http://localhost:5173",
+    "https://prep-ai-opal-pi.vercel.app"
+]
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
+    origin: allowedOrigin,
+    credentials: true,
+    
 }))
 
 app.get("/", (req, res) => {
