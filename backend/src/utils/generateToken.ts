@@ -24,8 +24,7 @@ export default async function generateToken(userId: string, res: Response) {
         //sameSite: "strict",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         // for deployment
-        expires: new Date(0),
-        sameSite: "none",     // REQUIRED for cross-site
+        sameSite: "lax",     // REQUIRED for cross-site
         path: "/",
     })
 
@@ -35,8 +34,7 @@ export default async function generateToken(userId: string, res: Response) {
         //sameSite: "strict",
         maxAge: 15 * 60 * 1000,
         // for deployment
-        expires: new Date(0),
-        sameSite: "none",     // REQUIRED for cross-site
+        sameSite: "lax",     // REQUIRED for cross-site
         path: "/",
     })
 }

@@ -8,7 +8,7 @@ interface Register {
 }
 
 //const baseUrl = "http://localhost:3000";
-const baseUrl = "https://genai-prepai-backend.onrender.com"; // deployed backend
+const baseUrl = ""; // deployed backend, " " becase of vercel.json
 
 export async function register({username, email, password}: Register) {
     try {

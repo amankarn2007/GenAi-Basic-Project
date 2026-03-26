@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://genai-prepai-backend.onrender.com/api/:path*"
+    }
+  ]
+}
