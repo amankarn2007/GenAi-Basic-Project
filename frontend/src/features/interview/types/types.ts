@@ -8,7 +8,7 @@ export interface TechnicalQuestion {
 export interface BehavioralQuestion {
   id: string;
   question: string;
-  answer: string; // Backend check: "answer" hi hai dono mein
+  answer: string;
   intention: string;
 }
 
@@ -22,7 +22,7 @@ export interface PreparationStep {
   id: string;
   day: number;
   focus: string;
-  task: string[]; // <--- Yeh array hai ab
+  task: string[];
 }
 
 export interface InterviewReport {
@@ -32,7 +32,7 @@ export interface InterviewReport {
   jobDescription: string;
   resume: string;
   selfDescription: string;
-  technicalQuestion: TechnicalQuestion[]; // Singular key from DB
+  technicalQuestion: TechnicalQuestion[];
   behavioralQuestions: BehavioralQuestion[];
   skillGaps: SkillGap[];
   preparationPlan: PreparationStep[];

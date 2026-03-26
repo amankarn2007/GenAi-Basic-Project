@@ -72,13 +72,16 @@ export const useInterview = () => {
         setLoading(true);
         let response = null;
         try {
-            response = await generateResumePdf({interviewId});
+            response = await generateResumePdf({interviewId}); //backend will return response in bytes
+
+            // make url using bytes
             const url = window.URL.createObjectURL(new Blob([response], { type: "application/pdf" }));
-            const link = document.createElement("a");
+
+            const link = document.createElement("a"); //fake link
             link.href = url;
             link.setAttribute("download", `resume_${interviewId}.pdf`);
             document.body.appendChild(link);
-            link.click();
+            link.click(); //download
 
         } catch (error) {
             console.log(error);
@@ -86,14 +89,6 @@ export const useInterview = () => {
             setLoading(false);
         }
     }
-
-    //useEffect(() => {
-    //    if(interviewId) {
-    //        getReportById({interviewId})
-    //    } else {
-    //        getAllReports()
-    //    }
-    //}, [interviewId])
 
     return {
         loading,
@@ -105,5 +100,4 @@ export const useInterview = () => {
         getAllReports,
         getResumePdf
     }
-
 }

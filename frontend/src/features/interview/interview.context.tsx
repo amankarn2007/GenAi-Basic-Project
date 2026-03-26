@@ -13,6 +13,7 @@ interface InterviewContextType {
 
 export const InterviewContext = createContext<InterviewContextType | null>(null)
 
+//access states from anywhere using InterviewProvider
 export function InterviewProvider({children}: {children: React.ReactNode}) {
     
     const [loading, setLoading] = useState(false);

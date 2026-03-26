@@ -1,11 +1,12 @@
 import Footer from "../components/home/Footer"
 import Header from "../components/home/Header"
 import { Briefcase, User, Upload, Info } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
 import Loader from "../components/Loader";
 import { ChevronRight, BarChart2 } from 'lucide-react';
+import Flash from "../components/Flash";
 
 
 export default function Home() {
@@ -37,6 +38,8 @@ function Main() {
     const selfDescriptionRef = useRef(null);
     const { generateReport, reports, loading } = useInterview()
     const navigate = useNavigate();
+    const [flash, setFlash] = useState(false);
+    const [flashMsg, setFlashMsg] = useState("");
 
     async function handleSubmit() {
         //@ts-ignore
@@ -46,11 +49,13 @@ function Main() {
         //console.log(jobDescription, selfDescription, resumeFile);
 
         if (!jobDescription) {
-            alert("plese enter job description");
+            setFlash(true);
+            setFlashMsg("plese enter job description");
             return;
         }
         if (!selfDescription && !resumeFile) {
-            alert("Plese upload Resume or enter Self-Description।");
+            setFlash(true);
+            setFlashMsg("Plese upload Resume or enter Self-Description");
             return;
         }
 
@@ -63,9 +68,12 @@ function Main() {
 
             if (data && data.reportId) {
                 navigate(`/interview/${data.reportId}`)
+            } else {
+                setFlash(true);
             }
         } catch (error) {
-            alert("can't generate report right now!");
+            setFlash(true);
+            setFlashMsg("can't generate report right now!");
         }
     }
 
@@ -154,13 +162,14 @@ function Main() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-3 pt-5 overflow-y-auto max-h-100 pr-2 custom-scrollbar">
+            {/* All reports of user */}
+            <div className="grid grid-cols-1 gap-3 pt-5 pr-2">
                 {reports && reports.length > 0 ? (
                     reports.map((report) => (
                         <button
                             key={report.id}
-                            onClick={() => navigate(`/interview/${report.id}`)}
                             className="group w-full text-left border border-zinc-800/60 rounded-xl overflow-hidden transition-all duration-300 hover:border-pink-500/30 hover:bg-zinc-800/30 focus:outline-none bg-zinc-900/40"
+                            onClick={() => navigate(`/interview/${report.id}`)}
                         >
                             <div className="flex items-center justify-between px-5 py-4 border border-zinc-700">
                                 <div className="flex items-center gap-4 min-w-0">
@@ -186,6 +195,8 @@ function Main() {
                     </div>
                 )}
             </div>
+
+            { flash && <Flash setFlash={setFlash} msg={flashMsg} /> }
         </div>
     );
 }

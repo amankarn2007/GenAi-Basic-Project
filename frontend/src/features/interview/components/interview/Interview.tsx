@@ -117,7 +117,8 @@ export const Interview = ({ report }: InterviewProps) => {
               </button>
             ))}
 
-            <div className="flex items-center gap-2.5 shrink-0 md:w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors font-medium text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 cursor-default" onClick={generatePdf}>
+            <div className="flex items-center gap-2.5 shrink-0 md:w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors font-medium text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 cursor-default" 
+            onClick={generatePdf}>
               <i className="fa-regular fa-file-lines"></i>
               <p>Resume</p>
             </div>
