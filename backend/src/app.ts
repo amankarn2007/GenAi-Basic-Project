@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 const allowedOrigin = [
     "http://localhost:5173",
-    "https://prep-ai-opal-pi.vercel.app"
+    "https://gen-ai-prep-ai.vercel.app",
 ]
 app.use(cors({
     origin: allowedOrigin,
